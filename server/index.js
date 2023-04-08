@@ -58,6 +58,16 @@ app.post("/createbill", (req, res) => {
     )
 })
 
+app.get('/product' , (req, res) => {
+    db.query("SELECT * FROM product", (err, value) => {
+        if(err) {
+            console.log(err);
+        }else {
+            res.send(value);
+        }
+    })
+})
+
 app.listen('3001', () => {
     console.log('Server is running on port 3001');
 })

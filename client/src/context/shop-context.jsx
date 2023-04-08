@@ -45,26 +45,24 @@ export const ShopContextProvider = (props) => {
       bill_result: results,
     })
   }
-  
-  const check = () => {
-    console.log(cartStore)
-  }
 
   const setdefelt = () => {
     setCartStore([])
     setCartId([])
   }
 
-  const getbillid = () => {
-    Axios.get('http://localhost:3001/bill').then((value) => {
-      setMaxid(value.data)
-    })
-    console.log(maxid[0].value)
-  }
+  const getbillid = async () => {
+    try {
+      const response = await Axios.get('http://localhost:3001/bill');
+      setMaxid(response.data);
+      console.log(maxid[0]?.value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    //console.log(itemId)
     cartId.push({itemId})
   };
 
@@ -101,7 +99,6 @@ export const ShopContextProvider = (props) => {
     addbill,
     getbillid,
     setdefelt,
-    check,
   };
 
   return (

@@ -9,7 +9,6 @@ export const Soda = () => {
       <div className="shopTitle">
         <h1></h1>
       </div>
-
       <div className="products">
         {SODA.map((product) => (
           <Product data={product} />

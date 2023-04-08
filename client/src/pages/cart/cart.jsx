@@ -1,4 +1,4 @@
-import React, { useContext, useState  } from "react";
+import React, { useContext, useState, useEffect  } from "react";
 import { ShopContext } from "../../context/shop-context";
 import { PRODUCTS } from "../../products";
 import { CartItem } from "./cart-item";
@@ -9,6 +9,9 @@ export const Cart = () => {
   const { cartItems, getTotalCartAmount, checkout, addmenu, addbill, getbillid, setdefelt, check} = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
+  useEffect(() => {
+    getbillid();
+}, []);
   return (
     <div className="cart">
       <div>
@@ -26,9 +29,7 @@ export const Cart = () => {
       {totalAmount > 0 ? (
         <div className="checkout">
           <p> Subtotal: ${totalAmount} </p>
-          <button onClick={() => getbillid()}> Continue Shopping </button>
-          <button onClick={() => setdefelt()}> Test </button>
-          <button onClick={() => check()}> Check </button>
+          <button onClick={() => navigate("/")}> Continue Shopping </button>
           <button onClick={() => {checkout(); navigate("/"); addmenu(); addbill();} }> Checkout </button>
         </div>
       ) : (
