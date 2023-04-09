@@ -4,9 +4,10 @@ import { PRODUCTS } from "../../products";
 import { CartItem } from "./cart-item";
 import { useNavigate } from "react-router-dom";
 
+
 import "./cart.css";
 export const Cart = () => {
-  const { cartItems, getTotalCartAmount, checkout, addmenu, addbill, getbillid, setdefelt, check} = useContext(ShopContext);
+  const { cartItems, getTotalCartAmount, checkout, addmenu, addbill, getbillid} = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
   useEffect(() => {
@@ -28,7 +29,9 @@ export const Cart = () => {
 
       {totalAmount > 0 ? (
         <div className="checkout">
-          <p> Subtotal: ${totalAmount} </p>
+          <div className="">
+            Subtotal: ${totalAmount}
+          </div>
           <button onClick={() => navigate("/")}> Continue Shopping </button>
           <button onClick={() => {checkout(); navigate("/"); addmenu(); addbill();} }> Checkout </button>
         </div>

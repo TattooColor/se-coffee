@@ -1,8 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import { PRODUCTS } from "../products";
 import Axios from 'axios'
-export const ShopContext = createContext(null);
+import { Product } from "../pages/product";
+import Swal from 'sweetalert2'
 
+
+
+export const ShopContext = createContext(null);
 const getDefaultCart = () => {
   let cart = {};
   for (let i = 1; i < PRODUCTS.length + 1; i++) {
@@ -17,6 +21,7 @@ export const ShopContextProvider = (props) => {
   const [cartStore,setCartStore] = useState( [] )
   const [maxid,setMaxid] = useState(0)
   const [results,setResult] = useState(0)
+
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -40,6 +45,8 @@ export const ShopContextProvider = (props) => {
     }
   }
 
+  
+
   const addbill = () => {
     Axios.post('http://localhost:3001/createbill', {
       bill_result: results,
@@ -60,6 +67,8 @@ export const ShopContextProvider = (props) => {
       console.log(error);
     }
   };
+
+  
 
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
@@ -86,7 +95,16 @@ export const ShopContextProvider = (props) => {
     console.log(cartStore)
     setCartItems(getDefaultCart());
     setdefelt();
+    Swal.fire({
+      position: 'top-middle',
+      icon: 'success',
+      title: 'SUSCCESS',
+      showConfirmButton: false,
+      timer: 1500
+    })
   };
+
+  
 
   const contextValue = {
     cartItems,

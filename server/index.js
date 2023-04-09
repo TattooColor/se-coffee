@@ -42,6 +42,51 @@ app.post("/createmenu", (req, res) => {
     )
 })
 
+app.post("/addproduct", (req, res) => {
+    const id = req.body.Product_Id;
+    const name = req.body.Product_Name;
+    const type = req.body.Product_Type;
+    const amount = req.body.amount;
+    const other = req.body.other;
+
+    db.query(
+        "INSERT INTO product (Product_Id, Product_Name, Product_Type, amount, other) VALUES(?,?,?,?,?)",
+        [id,name,type,amount,other],
+        (err, result) => {
+            if(err) {
+                console.log(err);
+            }else {
+                res.send("result");
+            }
+        }
+
+    )
+
+})
+
+app.delete("/delete/:num",(req, res) => {
+    const num = req.params.num;
+    db.query("DELETE FROM product WHERE Product_Id = ?",num, (err,result) => {
+        if(err) {
+            console.log(err);
+        }else {
+            res.send(result);
+        }
+    })
+})
+
+app.put("/update", (req,res) => {
+    const id = req.body.id;
+    const amount = req.body.amount;
+    db.query("UPDATE product SET amount = ? WHERE Product_Id = ?",[amount,id], (err,result) => {
+        if(err) {
+            console.log(err);
+        }else {
+            res.send(result);
+        }
+    })
+})
+
 app.post("/createbill", (req, res) => {
     const result = req.body.bill_result;
 
@@ -60,6 +105,16 @@ app.post("/createbill", (req, res) => {
 
 app.get('/product' , (req, res) => {
     db.query("SELECT * FROM product", (err, value) => {
+        if(err) {
+            console.log(err);
+        }else {
+            res.send(value);
+        }
+    })
+})
+
+app.get('/getproduct' , (req, res) => {
+    db.query("SELECT MAX(Product_Id) AS value FROM product ", (err, value) => {
         if(err) {
             console.log(err);
         }else {

@@ -4,16 +4,18 @@ import { ShoppingCart } from "phosphor-react";
 import "./navbar.css";
 import { GiCakeSlice } from "react-icons/gi";
 import { ShopContext } from "../context/shop-context";
-
+import  Peter  from "../assets/products/peter.png"
 export const Navbar = () => {
-  const {getbillid} = useContext(ShopContext);
   return (
+    
     <div className="navbar">
+      <img style={{ width: 80, height: 80 }} src={Peter} alt="React Logo" />
       <div className="store">
+      
+
         <Link to="/store"> 
           <GiCakeSlice size={32} color="white"/>
         </Link>
-
       </div>
       <div className="links">
         <Link to="/"> Shop </Link>
