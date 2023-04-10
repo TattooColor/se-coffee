@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import { Box } from "@mui/material";
 
 export const Store = () => {
     
@@ -93,7 +94,7 @@ export const Store = () => {
         confirmButtonText: 'Confirm',
         title: 'What number you want to change?',
         icon: 'info',
-        input: 'number',
+        input: 'range',
         inputLabel: 'Amount',
         inputAttributes: {
           min: 0,
@@ -106,11 +107,10 @@ export const Store = () => {
         if (result.isConfirmed) {
           Swal.fire('Change!', '', 'success')
           num = result.value;
-          console.log(num)
+          console.log(num);
           updata(num,id);
         }
       })
-      
     }
 
     const updata = (num,id) => {
@@ -134,9 +134,9 @@ export const Store = () => {
         title: 'Product',
         html:
           '<input id="swal-input1" class="swal2-input" name="name" placeholder="Name">' +
-          '<input id="swal-input2" class="swal2-input" name="type" placeholder="Type">' +
+          '<input id="swal-input2" class="swal2-input" name="type" placeholder="Weight">' +
           '<input id="swal-input3" class="swal2-input" name="amount" placeholder="Amount">' +
-          '<input id="swal-input4" class="swal2-input" name="other" placeholder="Other">',
+          '<input id="swal-input4" class="swal2-input" name="other" placeholder="Type">',
         confirmButtonText: 'Confirm',
         focusConfirm: false,
         preConfirm: () => {
@@ -159,8 +159,6 @@ export const Store = () => {
         console.log(formValues)
         addStore(formValues)
       }
-      
-      
     }
     
 
@@ -171,26 +169,28 @@ export const Store = () => {
         </Button>
 
             <TableContainer component={Paper} >
-      <Table sx={{ minWidth: 250 }} aria-label="simple table" >
+      <Box sx={{ flexShrink: 0, ml: 85 }} aria-label="simple table" >
         <TableHead>
           <TableRow>
-            <TableCell align="center">ID</TableCell>
-            <TableCell align="center">Name</TableCell>
-            <TableCell align="right">Type</TableCell>
+            <TableCell align="right">ID</TableCell>
+            <TableCell align="Left">Name</TableCell>
+            <TableCell align="right">weight</TableCell>
             <TableCell align="right">amount</TableCell>
-            <TableCell align="right">other</TableCell>
+            <TableCell align="right">type</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {showstore.map((row) => (
             <TableRow
               key={row.Product_Id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ '&:last-child td, &:last-child th': { border: 0,backgroundColor: "white" }, '&:nth-of-type(odd)': {
+                backgroundColor: "white",
+              }}}
             >
-              <TableCell align="left">{row.Product_Id}</TableCell>
-              <TableCell align="left">{row.Product_Name}</TableCell>
-              <TableCell align="center">{row.Product_Type}</TableCell>
-              <TableCell align="center">{row.amount}</TableCell>
+              <TableCell align="right">{row.Product_Id}</TableCell>
+              <TableCell align="Left">{row.Product_Name}</TableCell>
+              <TableCell align="right">{row.Product_Type}</TableCell>
+              <TableCell align="right">{row.amount}</TableCell>
               <TableCell align="right">{row.other}</TableCell>
               <Button variant="outlined" onClick={() => {upproduct(row.amount,row.Product_Id)}}>
             Update
@@ -201,7 +201,7 @@ export const Store = () => {
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Box>
     </TableContainer>
 
     </div>

@@ -31,24 +31,28 @@ export const PRODUCTS = [
         productName: "americano",
         price: 30,
         productImage: americano,
+        raw:"milk suger coffeemate milkegg wripcream coffeeseed"
       },
       {
         id: 2,
         productName: "blackcoffee",
         price: 30,
         productImage: blackcoffee,
+        raw:"milk suger coffeemate milkegg wripcream coffeeseed"
       },
       {
         id: 3,
         productName: "cappuccino",
         price: 40,
         productImage: cappuccino,
+        raw:"milk suger coffeemate milkegg wripcream coffeeseed"
       },
       {
         id: 4,
         productName: "coffeeborand",
         price: 35,
         productImage: coffeeborand,
+        raw:"milk suger coffeemate milkegg wripcream coffeeseed"
       },
       {
         id: 5,

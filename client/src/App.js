@@ -9,6 +9,7 @@ import { Tea } from "./pages/tea/tea";
 import { Soda } from "./pages/soda/soda";
 import { Store } from "./pages/store/store";
 import { Addstore } from "./pages/store/addstore";
+import { Setting } from "./pages/setting/setting";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/store" element={<Store />} />
             <Route path="/addstore" element={<Addstore />} />
+            <Route path="/setting" element={<Setting />}/>
           </Routes>
         </Router>
       </ShopContextProvider>

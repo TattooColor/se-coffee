@@ -5,6 +5,17 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  
+}
+
+.navbar2 {
+  background-color: rgb(19, 19, 19);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 0 1rem;
 }
 
 .links {
@@ -24,4 +35,13 @@
   float: left;
   align-items: left;
   display: flex;
+}
+
+.peter {
+  position: 'relative';
+  top: 0px;
+  bottom: 0px;
+  left: 50px;
+  right: 0px; 
+  justify-content: flex-start;
 }

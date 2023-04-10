@@ -13,6 +13,10 @@ const db = mysql.createConnection({
     database: "shop01"
 })
 
+app.listen('3001', () => {
+    console.log('Server is running on port 3001');
+})
+
 app.get('/bill' , (req, res) => {
     db.query("SELECT MAX(bill_id) AS value FROM bill ", (err, value) => {
         if(err) {
@@ -113,6 +117,16 @@ app.get('/product' , (req, res) => {
     })
 })
 
+app.get('/chart', (req, res) => {
+    db.query("SELECT menu_id,menu_name,COUNT(menu_id) AS count_word FROM menu GROUP BY menu_id  ASC;", (err, value) => {
+        if(err) {
+            console.log(err);
+        }else {
+            res.send(value);
+        }
+    })
+})
+
 app.get('/getproduct' , (req, res) => {
     db.query("SELECT MAX(Product_Id) AS value FROM product ", (err, value) => {
         if(err) {
@@ -123,6 +137,3 @@ app.get('/getproduct' , (req, res) => {
     })
 })
 
-app.listen('3001', () => {
-    console.log('Server is running on port 3001');
-})
